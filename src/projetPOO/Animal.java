@@ -18,10 +18,12 @@ public class Animal {
 			health,
 			age;
 	
+	public int lastAttacked, lastMated;// Dernier tour ou animal est attaqué , s'est reproduit
+	
 	private Case position;
 	private Case[] voisins;
 	
-	private Animal target;
+	private Color target; // Pour cette simulation, une seule proie (cible) est necessaire
 	
 	public Animal(Color color,Case position) {
 		
@@ -217,11 +219,11 @@ public class Animal {
 		this.voisins = voisins;
 	}
 
-	public Animal getTarget() {
+	public Color getTarget() {
 		return target;
 	}
 
-	public void setTarget(Animal target) {
+	public void setTarget(Color target) {
 		this.target = target;
 	}
 

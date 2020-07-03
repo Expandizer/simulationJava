@@ -53,71 +53,134 @@ public class Time {
 				ArrayList<Case> cases  = this.window.getCases();
 			
 			
-			// 1 - Detecter proies proches
+			// 1 - Detecter proies proches et 2 - Reproduction si conditions
 				for(Case c : cases) {
 					
-					int[] tmp_neighbors = this.window.getNeighbors(c);
-					ArrayList<Integer> neighbors = new ArrayList<>(8);
+					int[] tmp_neighbors = this.window.getNeighbors(c);// Liste cases voisines
+					ArrayList<Integer> neighbors = new ArrayList<>(8);// Liste qui contiendra les voisins (Animeaux)
 					
-					// Si une case voisine est vide, son offset devient = 0
+					int nbr_cases_voisines = tmp_neighbors.length;// Nombre cases voisines 
+					
+					
+					
+					// Nous enregistrons les cases non vides dans le teableau "neighbors"
 					int j=0;
-					for(int i =0 ;i <tmp_neighbors.length ; i++) {
-						tmp_neighbors[i] = (this.window.getCase(tmp_neighbors[i]).getX() == 0) 
-										? 0
-										: tmp_neighbors[i];
-						if(tmp_neighbors[i] != 0) {
+					for(int i =0 ;i < nbr_cases_voisines; i++) {
+						
+						if((this.window.getCase(tmp_neighbors[i]).getX() != 0)) {
 							neighbors.add( tmp_neighbors[i] );
 							j++;
 						}
+						
 					}
 					
-					//Recherche de si oui ou non l'animal a un(des) voisin(s)
+					
+					
 					boolean has_neighbors = (neighbors.size() == 0) ? false : true;
-					
-					
-					if(!has_neighbors) {// L'animal n'a pas de voisins , inutile de tenter de detecter
+					if(!has_neighbors) {// L'animal n'a pas de voisins , inutile de tenter de detecter / se reproduire
 						continue;
 					}
 					
-					System.out.println("has N");
 					
+					// Choix d'un voisin aleatoire (Attaque / reproduction ) 
+					int rand_neighbor_offset =  (int)Math.floor(Math.random() * (neighbors.size()) );
+					Case rand_neighbor = this.window.getCase( rand_neighbor_offset);
+					
+					
+					
+					// Deux lancers aleatoires pour tentative attaque voisin
 					double rand = Math.random()*100;
 					double rand2 = Math.random()*100;
+					
+					
 	
 					
-					if(rand <= c.getAnimal().getProb_detect() || rand2 <= c.getAnimal().getProb_detect()) {// Si detection (1ere et 2e tentatives)
+						//  Si detection (1ere ou 2e tentative gagnante) 
+					if(rand <= c.getAnimal().getProb_detect() || rand2 <= c.getAnimal().getProb_detect()) {
 						
-						
+						// rand_eat : points de dommages (attaque)
 						double rand_eat = Math.random() * (c.getAnimal().getBonus_atk());
 						rand_eat += c.getAnimal().getAtk();
 						
-						int rand_neighbor_offset =  (int)Math.floor(Math.random() * (neighbors.size()) );
 						
-						Case rand_neighbor = this.window.getCase( rand_neighbor_offset);
 						
-						if(rand_eat > rand_neighbor.getAnimal().getDef()) {
-							System.out.println("Attack");
+						/**
+						 * OMAR  : ATTACK()
+						 * Ne pas oublier de mettre à jour Animal.lastAttacked
+						 */
+						
+						
+						
+					}else { // Si tentative de detection echouée, passons etape suivante
+						
+						
+						// 2 -Reproduction si saison : Printemps 		
+						if(this.currentSeason == Seasons.Printemps) {
+						
+							
+							// et si case voisine contient meme espece
+							if(rand_neighbor.getAnimal().getColor() == c.getAnimal().getColor()) {
+								
+								/**
+								 * OMAR  : REPRODUCTION()
+								 * Ne pas oublier de mettre a jour Animal.lastMated
+								 */
+								
+							}
+							
 						}
 						
-						
-						
-					}else {
-						// Tentative de detection echouée, passons etape suivante
 					}
 					
+					
+
+					// 3 - Se deplacer
+					
+						//Si animal ne vient pas d'etre attaqué/ de s'etre reproduit
+					if(c.getAnimal().lastAttacked != this.dayCount && c.getAnimal().lastMated != this.dayCount) {
+						
+						for(int i=0; i<c.getAnimal().getSpeed() ; i++) {
+							
+							tmp_neighbors = this.window.getNeighbors(c);// Liste cases voisines							
+							nbr_cases_voisines = tmp_neighbors.length;// Nombre cases vides voisines 
+							
+							ArrayList<Integer> casesVides = new ArrayList<>(8);// Enregistrement des offsets des cases voisines vides
+							
+							// Nous enregistrons les cases  vides dans le teableau "casesVides"
+							j=0;
+							for(i =0 ;i < nbr_cases_voisines; i++) {
+								
+								if((this.window.getCase(tmp_neighbors[i]).getX() == 0)) {
+									casesVides.add( tmp_neighbors[i] );
+									j++;
+								}
+								
+							}
+							
+							// Choix d'un voisin aleatoire (Attaque / reproduction ) 
+							rand_neighbor_offset =  (int)Math.floor(Math.random() * (casesVides.size()) );
+							
+							
+							if(rand_neighbor_offset != 0) {
+								this.window.moveCell(c,rand_neighbor_offset);
+							}
+							
+							
+						}
+						
+					}
 					
 					
 				}
 				
 			
-			// 2 -Reproduction si saison : Printemps
-				// Si case voisine contient meme espece
 			
-			// 3 - Se deplacer
 			
+				
+				
 			// 4 -Mourir si conditions
 			
-				stillInLoop = false;
+			stillInLoop = true;
 			
 			//=============================
 			

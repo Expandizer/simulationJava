@@ -280,6 +280,10 @@ public class ChampGraphique extends JPanel implements ActionListener {
 		public Case ajouterCase(int x,int y) {
 			return ajouterCase(x,y,Case.DEFAULT_COLOR);
 		}
+		
+		public void removeCell(Case c) {
+			cases.remove(c);
+		}
 	
 		
 	public ArrayList<Case> getCases() {
@@ -348,6 +352,21 @@ public class ChampGraphique extends JPanel implements ActionListener {
 		return neighbors;
 	}
 	
+	
+	public void moveCell(Case c, int offset) {
+		
+		if(offset != 0) {
+			
+			int x = offset%this.largeur;
+			int y = (int)Math.floor(offset/this.largeur) + 1;
+			
+			removeCell(c);
+			ajouterCase(c.getX(),c.getY(),c.getColor());
+			
+		}
+		
+		
+	}
 	
 	public void changeCurrentSeason(Seasons saison) {
 		this.currentSeason = saison;
