@@ -18,7 +18,7 @@ public class Time {
 	public Time(ChampGraphique window) {
 		this.window = window;
 		
-		/*System.out.println("Animeaux présents : ");
+		/*System.out.println("Animeaux presents : ");
 		for(Case c : this.window.getCases()) {
 			
 			System.out.println( c.getX()+" , "+c.getY());
@@ -54,7 +54,7 @@ public class Time {
 			
 			
 			// 1 - Detecter proies proches et 2 - Reproduction si conditions
-				for(Case c : cases) {
+				for(Case c : cases) { 
 					
 					int[] tmp_neighbors = this.window.getNeighbors(c);// Liste cases voisines
 					ArrayList<Integer> neighbors = new ArrayList<>(8);// Liste qui contiendra les voisins (Animeaux)
@@ -106,12 +106,12 @@ public class Time {
 						
 						/**
 						 * OMAR  : ATTACK()
-						 * Ne pas oublier de mettre à jour Animal.lastAttacked
+						 * Ne pas oublier de mettre a jour Animal.lastAttacked
 						 */
 						
 						
 						
-					}else { // Si tentative de detection echouée, passons etape suivante
+					}else { // Si tentative de detection echouee, passons etape suivante
 						
 						
 						// 2 -Reproduction si saison : Printemps 		
@@ -136,7 +136,7 @@ public class Time {
 
 					// 3 - Se deplacer
 					
-						//Si animal ne vient pas d'etre attaqué/ de s'etre reproduit
+						//Si animal ne vient pas d'etre attaque/ de s'etre reproduit
 					if(c.getAnimal().lastAttacked != this.dayCount && c.getAnimal().lastMated != this.dayCount) {
 						
 						for(int i=0; i<c.getAnimal().getSpeed() ; i++) {
@@ -162,7 +162,7 @@ public class Time {
 							
 							
 							if(rand_neighbor_offset != 0) {
-								this.window.moveCell(c,rand_neighbor_offset);
+								//this.window.moveCell(c,rand_neighbor_offset);
 							}
 							
 							
@@ -201,7 +201,7 @@ public class Time {
 	
 	/**
 	 * @description Definit la saison actuelle (une saison = 30 jours),
-	 * 				Nous supposons que l'annee commence le jour 1 à la saison Hiver
+	 * 				Nous supposons que l'annee commence le jour 1 a la saison Hiver
 	 */
 	private Seasons updateCurrentSeason() {
 		

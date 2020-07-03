@@ -18,7 +18,7 @@ public class Animal {
 			health,
 			age;
 	
-	public int lastAttacked, lastMated;// Dernier tour ou animal est attaqué , s'est reproduit
+	public int lastAttacked, lastMated;// Dernier tour ou animal est attaque , s'est reproduit
 	
 	private Case position;
 	private Case[] voisins;
@@ -106,7 +106,7 @@ public class Animal {
 				
 			default:
 				System.out.println("========================================");
-				System.out.println("/!\\ Animal Initialisé incorrectement /!\\");
+				System.out.println("/!\\ Animal Initialise incorrectement /!\\");
 				System.out.println("=========================================");
 				break;
 		}

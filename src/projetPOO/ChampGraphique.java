@@ -49,8 +49,8 @@ public class ChampGraphique extends JPanel implements ActionListener {
 	
 	/**
 	 * Constructeur.
-	 * @param largeur La largeur (en nombre de cases) de la grille affichée.
-	 * @param hauteur La hauteur (en nombre de cases) de la grille affichée.
+	 * @param largeur La largeur (en nombre de cases) de la grille affichee.
+	 * @param hauteur La hauteur (en nombre de cases) de la grille affichee.
 	 */
 	public ChampGraphique(int largeur, int hauteur){	
 		this.largeur = largeur;
@@ -69,7 +69,7 @@ public class ChampGraphique extends JPanel implements ActionListener {
 		window.setSize(this.pixelWidth,this.pixelHeight);
 		window.setResizable(false);
 		window.setLocationRelativeTo(null);
-		window.setTitle("Poules, vipères, et renards -- AQUESBI Adam (11929071)");
+		window.setTitle("Poules, viperes, et renards -- AQUESBI Adam (11929071)");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.add(this);
 		int window_x = window.getX();
@@ -93,7 +93,7 @@ public class ChampGraphique extends JPanel implements ActionListener {
 		controlPanel.setSize(this.pixelWidth,150);
 		
 			//	Composantes du panel
-		JButton startBtn= new JButton("Démarrer");
+		JButton startBtn= new JButton("Demarrer");
 		
 		JLabel label_ren = new JLabel("<html>Nombre renards</html>");
 		JTextField input_ren = new JTextField();
@@ -103,7 +103,7 @@ public class ChampGraphique extends JPanel implements ActionListener {
 		JTextField input_pou = new JTextField();
 		this.input_pou = input_pou;
 		
-		JLabel label_vip = new JLabel("<html>Nombre vipères</html>");
+		JLabel label_vip = new JLabel("<html>Nombre viperes</html>");
 		JTextField input_vip = new JTextField();
 		this.input_vip = input_vip;
 		
@@ -174,7 +174,7 @@ public class ChampGraphique extends JPanel implements ActionListener {
 		
 		System.out.println("Nombre renards : "+int_ren);
 		System.out.println("Nombre poules : "+int_pou);
-		System.out.println("Nombre vipères : "+int_vip);
+		System.out.println("Nombre viperes : "+int_vip);
 		
 
 		window.setVisible(true);
@@ -246,7 +246,7 @@ public class ChampGraphique extends JPanel implements ActionListener {
 				45);
 		
 		
-		String title = "Poules, vipères, et renards";
+		String title = "Poules, viperes, et renards";
 		g.drawString(title,this.pixelWidth - this.controlPanelWidth + 5, this.pixelHeight-70);
 		g.drawString("Par AQUESBI Adam ",this.pixelWidth - this.controlPanelWidth + 5, this.pixelHeight-50);
 		
@@ -254,8 +254,8 @@ public class ChampGraphique extends JPanel implements ActionListener {
 
 	/**
 	 * Permet d'ajouter une case (en option : d'une couleur)
-	 * @param x Abscisse de la case à ajouter 
-	 * @param y Ordonnée de la case à ajouter
+	 * @param x Abscisse de la case a ajouter 
+	 * @param y Ordonnee de la case a ajouter
 	 * @param color Couleur.
 	 */	
 	public Case ajouterCase(int x,int y, Color color) {
@@ -274,8 +274,8 @@ public class ChampGraphique extends JPanel implements ActionListener {
 		
 		/**
 		 * Permet d'ajouter une case de couleur par defaut
-		 * @param x Abscisse de la case à ajouter 
-		 * @param y Ordonnée de la case à ajouter
+		 * @param x Abscisse de la case a ajouter 
+		 * @param y Ordonnee de la case a ajouter
 		 */	
 		public Case ajouterCase(int x,int y) {
 			return ajouterCase(x,y,Case.DEFAULT_COLOR);
