@@ -9,6 +9,7 @@ public class Case {
 	private Color color;
 	private int x_pos,y_pos;
 	
+	private Animal animal = null;
 	
 	private int offset;			//Position de la case
 	
@@ -20,11 +21,26 @@ public class Case {
 			
 			this.setCoord(x,y);
 			this.setColor(color);
+			
+			this.animal = new Animal(color,this);
+			
 		}
 		
 	/**
 	 * @description Setters & Getters
 	 */
+		
+	public void addAnimal(Animal a) {
+		this.animal = a;
+	}
+	
+	public void removeAnimal() {
+		this.animal = null;
+	}
+	
+	public Animal getAnimal() {
+		return this.animal;
+	}
 	
 	public void setCoord(int x,int y) {
 		this.x_pos = x;
